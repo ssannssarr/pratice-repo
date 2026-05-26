@@ -1,5 +1,3 @@
-
-
 # LIBRARY      
 library_books = {
     "It Ends With Us":{
@@ -70,19 +68,20 @@ library_books = {
 
 # TEXT SECTION
 HELP_TEXT = """
-    Available Commands:
-    /list - List all available books in the library 
-    /srch - Search for a book in the library
-    /buy - Buy a book from the library
-    /exit - Exit the library
-    /help - Show this help message
+Available Commands:
+/list -a - List all available books in the library
+/list -un - List all unavailable books in the library 
+/srch - Search for a book in the library
+/buy - Buy a book from the library
+/exit - Exit the library
+/help - Show this help message
 
 """
 WELCOME_TEXT = """
-    Welcome to SannS library!!^_^
-    We have a wide range of books for you to choose from.        
-    For any query email us @sannslib@gmail.com
-    Type "/help" to see the available commands
+Welcome to SannS library!!^_^
+We have a wide range of books for you to choose from.        
+For any query email us @sannslib@gmail.com
+Type "/help" to see the available commands
 
 """
 BYE_TEXT = "Goodbye!!\nHave a good day!"
@@ -90,18 +89,16 @@ BYE_TEXT = "Goodbye!!\nHave a good day!"
 # The Info Func
 def info(book_name):
     for book in library_books:
-      if book.lower() == book_name:
-        print(f"""\n
+        if book.lower() == book_name:
+            print(f"""
 NAME : {library_books.get(book).get("name")}
 AVAILABILITY : {library_books.get(book).get("Availability")}
 PRICE : {library_books.get(book).get("price")}$
 AUTHOR : {library_books.get(book).get("Author")}
 STOCK : {library_books.get(book).get("Stock")}
+
 """)
-    else:
-        print(f"""\n
-              The book {book_name} is not available in our library 
-              To see the the available books use Cmd:'/list'""")  
+      
       
 # Searching Function
 def srch():
@@ -115,10 +112,10 @@ def list_a():
      for book in library_books:
         if library_books[book].get("Availability"):
             print(book)
-
+     
 # List All Unvailable currently
 def list_un():
-    print("\nThese Are The Unvailable Books In Our Library:\n")
+    print("\nThese Books Are Currently Unvailable In Our Library:\n")
     for book in library_books:
         if library_books[book].get("Availability") == False:
             print(book)
@@ -130,9 +127,9 @@ def buy():
     for book in library_books:
      if book.lower() == buy_book:
         if library_books.get(book).get("Availability"):
-            print(f"""\n
+            print(f"""
 The book {book} is available. The info is listed below. 
-{info(book_name=buy_book)}
+{info(buy_book)}
 Will You Buy?(y/n)""" )
             buy = input("[buy]>> ").strip().lower()
             if buy == "y":
@@ -187,6 +184,4 @@ try:
              print("\nThe command you typed didnt support.T_T")
     print(BYE_TEXT)
 except KeyboardInterrupt:
-     print("\n"+BYE_TEXT)    
-             
-       
+     print("\n"+BYE_TEXT)
