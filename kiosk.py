@@ -79,7 +79,7 @@ def srch():
 # List All Available Books
 def list_books():
     for book in library_books:
-        if library_books[book]("Availability"):
+        if library_books[book].get("Availability"):
             print(book)
 # Buy function 
 def buy():
