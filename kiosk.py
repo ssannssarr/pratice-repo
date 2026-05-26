@@ -4,48 +4,57 @@ import pandas as pd
 library_books = {
     "It Ends With Us":{
         "Availability": True,
-        "prize":99.5,
-        "Author":"Collen Hoover"
+        "price":99.5,
+        "Author":"Collen Hoover",
+        "Stock": 15,
     },
     "1984":{
         "Availability": False,
-        "prize":80.50,
-        "Author":"Collen Hoover"
+        "price":80.50,
+        "Author":"Collen Hoover",
+        "Stock": 0,
     },
     "One Indian Girl": {
         "Availability": True,
-        "prize":99.5,
-        "Author":"Collen Hoover"
+        "price":99.5,
+        "Author":"Collen Hoover",
+        "Stock": 15,
     },
     "Atomic Habit": {
         "Availability": True,
-        "prize":60.75,
-        "Author":" James Clear"
+        "price":60.75,
+        "Author":" James Clear",
+        "Stock": 15,
     },
     "The Alchemist": {
         "Availability": False,
-        "prize":99.5,
-        "Author":"Paulo Coelho"
+        "price":99.5,
+        "Author":"Paulo Coelho",
+        "Stock": 0,
     },
     "The Subtle Art of Not Giving a F*ck": {
-        "Availability": True,
-        "prize":70.00,
-        "Author":"Mark Manson"
+        "Availability": False,
+        "price":70.00,
+        "Author":"Mark Manson",
+        "Stock": 0,
     },
     "The Power of Now": {
         "Availability": True,
-        "prize":100.00,
-        "Author":"Eckhart Tolle"
+        "price":100.00,
+        "Author":"Eckhart Tolle",
+        "Stock": 15,
     },
     "The 5 AM Club": {
         "Availability": False,
-        "prize":500.00,
-        "Author":"Robin Sharma"
+        "price":500.00,
+        "Author":"Robin Sharma",
+        "Stock": 0,
     },
     "The Great Gatsby": {
         "Availability": True,
-        "prize":85.00,
-        "Author":"F. Scott Fitzgerald"
+        "price":85.00,
+        "Author":"F. Scott Fitzgerald",
+        "Stock": 15,
     },
 }
 
@@ -102,7 +111,7 @@ For any query email us @sannslib@gmail.com""")
                 print("Whenever you change your mind let us know - SannS Library ")
         else:
             print(f"""
-The book {buy_book} is currently available
+The book {buy_book} is currently unavailable
 If you want you can pre-book it
 For book details use "/info"
 """      )
@@ -110,7 +119,7 @@ For book details use "/info"
             if unavai == "/info":
                 print(pd.Series(library_books.get(buy_book)))
                 print("Will you Pre-Book:(y/n)")
-                prbk = input("[pre-book]>>").lower
+                prbk = input("[pre-book]>>").lower()
                 if prbk == "y":
                     print("We will inform the sec the book appears to us")
                 else:
@@ -125,7 +134,7 @@ For book details use "/info"
 print(WELCOME_TEXT)
 user_input = ""
 try:
-     while user_input != "/exit":
+    while user_input != "/exit":
         user_input = input(">>")
         if user_input == "/list":
              print("This books are available in our library")
@@ -136,8 +145,8 @@ try:
             print(HELP_TEXT)
         elif user_input == "/buy":
             buy()
-        else:
+        elif user_input != "/exit":
              print("The command you typed didnt support.T_T")
-     print(BYE_TEXT)
+    print(BYE_TEXT)
 except KeyboardInterrupt:
-     print("\n", BYE_TEXT)
+     print("\n",BYE_TEXT)
