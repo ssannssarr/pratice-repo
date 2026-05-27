@@ -1,5 +1,4 @@
 
-
 library_books = {
     "It Ends With Us":{
         "name":"It Ends With Us",
@@ -66,21 +65,62 @@ library_books = {
     },
 }
 
+def prebook():
+    print(f"""
+The book {book} is currently unavailable
+If you want you can pre-book it
+For book details use "/info"
+""")
+    unavai = input("[pre-book]>>").strip().lower()
+    if unavai == "/info":
+        print(info(book_name=buy_book))
+        print("Will you Pre-Book:(y/n)")
+        prbk = input("[pre-book]>>").strip().lower()
+        if prbk == "y":
+            print("We will inform the sec the book appears to us. (^-^)")
+        else:
+            print("Your wish!!")
+    else:
+        print("You can see our other books by cmd ='/list' ")           
+
 def info(book_name):
     for book in library_books:
         if book.lower() == book_name:
             return f"""
-NAME : {library_books.get(book).get("name")}
-AVAILABILITY : {library_books.get(book).get("Availability")}
-PRICE : {library_books.get(book).get("price")}$
-AUTHOR : {library_books.get(book).get("Author")}
-STOCK : {library_books.get(book).get("Stock")}
-
+ NAME           : {library_books.get(book).get("name")}        
+ AVAILABILITY   : {library_books.get(book).get("Availability")}
+ PRICE          : {library_books.get(book).get("price")}$    
+ AUTHOR         : {library_books.get(book).get("Author")}      
+ STOCK          : {library_books.get(book).get("Stock")}                
 """
+        
+usr_in = input(">> ").strip().lower()
 
-usr_in = input(">>").strip().lower()
-if usr_in == "/srch":
-    print("\nEnter the book Name you want to query:")
-    book_name = input("[search]>>").strip().lower()
-    print(info(book_name))
-    
+if usr_in == "/buy":
+    print(f"\nWhich book will you buy?")
+    found = False
+    buy_book = input("[buy]>> ").strip().lower()
+    for book in library_books:
+        if book.lower() == buy_book:
+            found = True
+
+            if library_books.get(book).get("Availability"):
+                print(f"""
+The book {book} is available. The info is listed below. {info(buy_book)}
+Will You Buy?(y/n)""" )
+                buy = input("[buy]>> ").strip().lower()
+                if buy == "y":
+                    library_books[book]["Stock"] -= 1
+                    print(f"""
+The book {book} of price {library_books.get(book).get("price")}$ is out for delivery.^_^
+HAPPY READING
+For any query email us @sannslib@gmail.com""")
+                    break
+                else:
+                    print("Whenever you change your mind let us know - SannS Library ")
+            elif library_books.get(book).get("Availability") == False:
+                prebook()
+
+    if not found:
+            print(f"The Book {buy_book} isnt available in our library.(T.T)")
+
