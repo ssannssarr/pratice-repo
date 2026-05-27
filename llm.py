@@ -1,4 +1,4 @@
-import pandas as pd
+
 
 library_books = {
     "It Ends With Us":{
@@ -66,16 +66,21 @@ library_books = {
     },
 }
 
+def info(book_name):
+    for book in library_books:
+        if book.lower() == book_name:
+            return f"""
+NAME : {library_books.get(book).get("name")}
+AVAILABILITY : {library_books.get(book).get("Availability")}
+PRICE : {library_books.get(book).get("price")}$
+AUTHOR : {library_books.get(book).get("Author")}
+STOCK : {library_books.get(book).get("Stock")}
+
+"""
+
 usr_in = input(">>").strip().lower()
 if usr_in == "/srch":
     print("\nEnter the book Name you want to query:")
     book_name = input("[search]>>").strip().lower()
-    for book in library_books:
-     if book.lower() == book_name:
-        print(f"""
-NAME : {library_books.get(book).get("name")}
-AVAILABILITY : {library_books.get(book).get("Availability")}
-PRICE : {library_books.get(book).get("price")}
-AUTHOR : {library_books.get(book).get("Author")}
-STOCK : {library_books.get(book).get("Stock")}
-""")
+    print(info(book_name))
+    

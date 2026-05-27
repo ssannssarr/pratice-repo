@@ -68,21 +68,21 @@ library_books = {
 
 # TEXT SECTION
 HELP_TEXT = """
-Available Commands:
-/list -a - List all available books in the library
-/list -un - List all unavailable books in the library 
-/srch - Search for a book in the library
-/buy - Buy a book from the library
-/exit - Exit the library
-/help - Show this help message
-
+  Available Commands:
+ +---------------------------------------------------------+
+ | /list -a    - List all available books in the library   |
+ | /list -un   - List all unavailable books in the library |
+ | /srch       - Search for a book in the library          |
+ | /buy        - Buy a book from the library               |
+ | /exit       - Exit the library                          |
+ | /help       - Show this help message                    |
+ +---------------------------------------------------------+
 """
 WELCOME_TEXT = """
 Welcome to SannS library!!^_^
 We have a wide range of books for you to choose from.        
 For any query email us @sannslib@gmail.com
 Type "/help" to see the available commands
-
 """
 BYE_TEXT = "Goodbye!!\nHave a good day!"
 
@@ -90,14 +90,13 @@ BYE_TEXT = "Goodbye!!\nHave a good day!"
 def info(book_name):
     for book in library_books:
         if book.lower() == book_name:
-            print(f"""
+            return f"""
 NAME : {library_books.get(book).get("name")}
 AVAILABILITY : {library_books.get(book).get("Availability")}
 PRICE : {library_books.get(book).get("price")}$
 AUTHOR : {library_books.get(book).get("Author")}
 STOCK : {library_books.get(book).get("Stock")}
-
-""")
+"""
       
       
 # Searching Function
@@ -108,57 +107,57 @@ def srch():
 
 # List All Available Books
 def list_a():
-     print("\nThese Are The Available Books In Our Library:\n")
+     print("\nThese Are The Available Books In Our Library:")
      for book in library_books:
         if library_books[book].get("Availability"):
-            print(book)
+            print("  *",book)
      
 # List All Unvailable currently
 def list_un():
-    print("\nThese Books Are Currently Unvailable In Our Library:\n")
+    print("\nThese Books Are Currently Unvailable In Our Library:")
     for book in library_books:
         if library_books[book].get("Availability") == False:
-            print(book)
+            print("  *",book)
      
 # Buy function 
 def buy():
     print(f"\nWhich book will you buy?")
     buy_book = input("[buy]>> ").strip().lower()
     for book in library_books:
-     if book.lower() == buy_book:
-        if library_books.get(book).get("Availability"):
-            print(f"""
+        if book.lower() == buy_book:
+            if library_books.get(book).get("Availability"):
+                print(f"""
 The book {book} is available. The info is listed below. 
 {info(buy_book)}
 Will You Buy?(y/n)""" )
-            buy = input("[buy]>> ").strip().lower()
-            if buy == "y":
-                library_books[book]["Stock"] -= 1
-                print(f"""\n
+                buy = input("[buy]>> ").strip().lower()
+                if buy == "y":
+                    library_books[book]["Stock"] -= 1
+                    print(f"""
 The book {book} of price {library_books.get(book).get("price")}$ is out for delivery.^_^
 HAPPY READING
 For any query email us @sannslib@gmail.com""")
+                else:
+                    print("Whenever you change your mind let us know - SannS Library ")
             else:
-                print("Whenever you change your mind let us know - SannS Library ")
-        else:
-            print(f"""
+                print(f"""
 The book {book} is currently unavailable
 If you want you can pre-book it
 For book details use "/info"
 """      )
-            unavai = input("[pre-book]>>").strip().lower()
-            if unavai == "/info":
-                info(book_name=buy_book)
-                print("Will you Pre-Book:(y/n)")
-                prbk = input("[pre-book]>>").strip().lower()
-                if prbk == "y":
-                    print("We will inform the sec the book appears to us")
+                unavai = input("[pre-book]>>").strip().lower()
+                if unavai == "/info":
+                    info(book_name=buy_book)
+                    print("Will you Pre-Book:(y/n)")
+                    prbk = input("[pre-book]>>").strip().lower()
+                    if prbk == "y":
+                        print("We will inform the sec the book appears to us")
+                    else:
+                        print("Your wish!!")
                 else:
-                    print("Your wish!!")
-            else:
-                print("You can see our other books by cmd ='/list' ")
-     else: 
-        print(f"The book {buy_book} isnt available in our library or you might havr a typo (T.T)")             
+                    print("You can see our other books by cmd ='/list' ")
+        else: 
+             print(f"The book {buy_book} isnt available in our library or you might havr a typo (T.T)")             
 
 
 
@@ -177,7 +176,7 @@ try:
         elif user_input == "/srch":
             srch()
         elif user_input == "/help":
-            print("\n"+HELP_TEXT)
+            print(HELP_TEXT)
         elif user_input == "/buy":
             buy()
         elif user_input != "/exit":
