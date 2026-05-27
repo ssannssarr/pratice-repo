@@ -10,8 +10,8 @@ def greet():
     elif crrnt_time > 18:
         return("Good Evening!!")
 
-usr_name = input("Can you Enter Your-Name:").upper().strip()
 
+usr_name = input("Can you Enter Your-Name:").upper().strip()
 WELCOME_TEXT=f"""
  Hi,(^_^)
  {greet()}{usr_name}
