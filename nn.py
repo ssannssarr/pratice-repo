@@ -22,7 +22,10 @@ def sigmoid(x):
 def sigmoid_derivative(y):
     return y * (1 - y)
 
-for epoch in range(10000):
+# Custom epoch range for observation
+epoch_range = int(input("Enter epoch Range:\n>>"))
+
+for epoch in range(epoch_range):
     total_error = 0
 
     for inputs, target in data:
