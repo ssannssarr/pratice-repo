@@ -8,7 +8,7 @@
 
 
 
-If you are interested in the projects of this repo you can watch the <a herf="project.md">Projects.md</a> file for detailed documatation of the projects.
+If you are interested in the projects of this repo you can watch the <a herf="https://github.com/ssannssarr/pratice-repo/blob/main/projects.md">Projects.md</a> file for detailed documatation of the projects.
 
 
 <div align="center">
