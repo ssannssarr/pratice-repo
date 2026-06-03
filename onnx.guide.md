@@ -36,7 +36,7 @@ The test worked with:
 
 Component Value
 Python 3.12.13
-Torch 2.10.0+cu128
+Torch 2.2.2+cu121
 GPU P100 (recommended)
 Repo OHF-Voice/piper1-gpl
 
