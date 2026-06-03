@@ -35,10 +35,13 @@ This forces training to use only one GPU.
 The test worked with:
 
 Component Value
+
+```txt
 Python 3.12.13
 Torch 2.2.2+cu121
 GPU P100 (recommended)
 Repo OHF-Voice/piper1-gpl
+```
 
 ⚠️ Important: Training worked. Export had one bug. Bug was fixed by editing export_onnx.py.
 
